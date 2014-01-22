@@ -57,17 +57,25 @@ commit;
 
 --6--
 --Reservation de la part du client
---
+--Exemple: Client n° 19 veut réserve un vol passager 
 SET AUTOCOMMIT OFF;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
---Le client choisit un vols pour la réservation en choisissant: horaires, depart, destination
-
+--Le client choisit un vols pour la réservation en choisissant: horaires=10h , depart = Lyon , destination = Paris
+select NumVolP from VolsPassager where (Origine ='Lyon' and Destination = 'Paris' and  to_hour(HeureDepGMT) < 11 and  to_hour(HeureDepGMT) > 9)
+--Le client choisit les places 56 et 57
+insert into Reservation values(1,19,to_date('10/29/09', 'MM/DD/YY'));
+insert into ResaPassager values(4,to_date('10/29/09', 'MM/DD/YY'),56,1,200);
+insert into ResaPassager values(4,to_date('10/29/09', 'MM/DD/YY'),57,1,200);
 --Le client peut rajouter d'autres vols dans la réservation
 
 --On affiche les points du client
-select 
+select Points from Client where NumClient = 19 ;
 --On vérifie si les points sont utilisables
 
 --Si l'utilisation est possible on remet le prix à 0
 
 --On remet le nombre de point à 0
+update Client set Points = 0 where NumClient = 19 ;
+COMMIT ;
+
+--7--
