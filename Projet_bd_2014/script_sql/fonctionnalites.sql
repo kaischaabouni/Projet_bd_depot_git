@@ -3,6 +3,7 @@ start with 100
 increment by 1 
 nomaxvalue; 
 
+SET AUTOCOMMIT OFF;
 
 
 
@@ -24,7 +25,6 @@ insert into  VolsFret values(vols_seq.NEXTVAL, to_date('10/29/09', 'MM/DD/YY') ,
 --4--
 --Confirmation de la terminaison d'un vol et mise à jour des informations clients, pilotes, hotesses
 --Exemple: confirmer la terminaison du vol fret n°7 de la date  10/29/09
-SET AUTOCOMMIT OFF;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 update VolsFret set Termine = 'O' where (NumAvionF = 7 and DateVolF = to_date('10/29/09', 'MM/DD/YY')) ;
 --chercher la durée du vol
@@ -45,7 +45,6 @@ commit;
 --5--
 --Consultation des commandes d'un client
 --Exemple: consulter les commandes du client Pierre Dupont
-SET AUTOCOMMIT OFF;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 --afficher les données concernants ses reservations Fret
 select rf.* from Reservation r , ResaFret rf, Client c 
@@ -58,7 +57,6 @@ commit;
 --6--
 --Reservation de la part du client
 --Exemple: Client n° 19 veut réserve un vol passager 
-SET AUTOCOMMIT OFF;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 --Le client choisit un vols pour la réservation en choisissant: horaires=10h , depart = Lyon , destination = Paris
 select NumVolP from VolsPassager where (Origine ='Lyon' and Destination = 'Paris' and  to_hour(HeureDepGMT) < 11 and  to_hour(HeureDepGMT) > 9)
@@ -80,7 +78,6 @@ COMMIT ;
 
 --7--
 --Modification de la réservation d'un client
-SET AUTOCOMMIT OFF;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 --changement de places de 57 à 55
 update ResaPassager set NumPlace = 55 where (NumVolP= 4 and DateVolP = to_date('10/29/09', 'MM/DD/YY') and NumResa = 1 and NumPlace = 57) ;
@@ -91,5 +88,19 @@ delete Reservation where NumResa = 1 ;
 
 COMMIT ;
 
+--8--
+--Suppression de la réservation d'un client
+--
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+delete Reservation where NumResa = 1 ;
+COMMIT;
 
+--9--
+--Ajout et suppression d'un personnel de vol
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--ajout d'un pilote
+
+--ajout d'une hotesse
+
+COMMIT;
 
