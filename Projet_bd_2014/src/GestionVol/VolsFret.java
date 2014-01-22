@@ -1,5 +1,5 @@
 package GestionVol;
 
-public class Vol {
+public class VolsFret {
 
 }
