@@ -187,7 +187,7 @@ NumPersoP  integer not null,
 NumVol     varchar2(30) not null,
 DateVol   Date not null,
 constraint pk_AffectationP PRIMARY KEY (NumPersoP,NumVol,DateVol),
-constraint fk1_AffectationP FOREIGN KEY (NumPersoP) references Pilotes(NumPersoP) ON DELETE CASCADE,
+constraint fk1_AffectationP FOREIGN KEY (NumPersoP) references Pilotes(NumPersoP) ON DELETE CASCADE
 );
 
 create table AffectationH(

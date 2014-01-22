@@ -39,4 +39,21 @@ BEGIN
 END;
 /
 
-
+CREATE OR REPLACE TRIGGER ContrainteAffectationP
+AFTER INSERT OR UPDATE ON AffectationP
+DECLARE
+	nb Integer;
+BEGIN
+	select count(*) into nb from (select * from AffectationP aff,  VolsPassager v, AvionsPassagers a, Modele m , Qualification q 
+		where (aff.NumVol = v.NumVolP and aff.DateVol = v.DateVolP and v.NumAvionP = a.NumAvionP and a.Modele = m.Modele 
+				and aff.NumPersoP = q.NumPersoP and a.Modele = q.Modele) );
+	if (nb = 0) then raise_application_error (-20999,'Le pilote affecte n a pas la qualification pour le modele d avion effectuant ce vol');
+	end if;	
+	
+	select count(*) into nb from (select * from AffectationP aff,  VolsFret v, AvionsFret a, Modele m , Qualification q 
+		where (aff.NumVol = v.NumVolF and aff.DateVol = v.DateVolF and v.NumAvionF = a.NumAvionF and a.Modele = m.Modele 
+				and aff.NumPersoP = q.NumPersoP and a.Modele = q.Modele) );
+	if (nb = 0) then raise_application_error (-20999,'Le pilote affecte n a pas la qualification pour le modele d avion effectuant ce vol');
+	end if;		
+END;
+/
