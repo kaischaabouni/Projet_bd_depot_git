@@ -167,7 +167,9 @@ constraint ck3_Pilotes CHECK (NbHeuresVolTotal > 0),
 constraint pk_Pilotes PRIMARY KEY (NumPersoP)
 );
 
+
 create table Hotesses(
+
 NumPersoH        integer not null,
 NomH             varchar2(30) not null,
 PrenomH          varchar2(30) not null,
