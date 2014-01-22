@@ -79,3 +79,17 @@ update Client set Points = 0 where NumClient = 19 ;
 COMMIT ;
 
 --7--
+--Modification de la réservation d'un client
+SET AUTOCOMMIT OFF;
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--changement de places de 57 à 55
+update ResaPassager set NumPlace = 55 where (NumVolP= 4 and DateVolP = to_date('10/29/09', 'MM/DD/YY') and NumResa = 1 and NumPlace = 57) ;
+--changement d'un vol
+----suppression de cette reservation
+delete Reservation where NumResa = 1 ;
+----ajout d'une nouvelle réservation comme dans la fonctionnalité 6
+
+COMMIT ;
+
+
+
