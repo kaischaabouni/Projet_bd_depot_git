@@ -8,7 +8,35 @@ SET AUTOCOMMIT OFF;
 
 
 --1--
---Planification d'un nouveau vol
+--Planification d'un nouveau vol READ COMMITTED
+   * Affectation d'un Avion  
+        on parcours la table vol
+         chercher tous les vols dont la destination est identique a l'origine du vol a planifier
+         on recherche le max de  la date de tous les vols selectionnés(pour voir la derniere date ou le vol a atteri)
+	  if(date d'arrive du vol selectionné< = date du vol à planifier)
+           on insere le le vol avec le numero d'avion qui sera selectionné)  
+
+    * Affectation d'un pilote 
+        
+        verifier que le pilote est qualifie pour cet Avion
+         si le pilote n'a jamais ete affecte on l'insere.
+         sinon (verifier toutes les contraintes liées au pilotes)
+		selectionner toutes les affections du pilote
+ 
+                     parcourir la selection des affectations cherchant le maximum des date par rapport a la date a affecter
+                       
+                     si on trouve le max on verifie deux cas 
+                       1 cas : 
+                              la date a affecter est inferieur au max dans ce cas: 
+                               verifier les contraintes sur les heures , la duree et le temps de repos du pilotes
+			       verifier les contraintes sur les heures , la duree et le temps de repos du pilotes
+                               
+         * Affectation d'un hotessse
+            verifier les places places reservées 
+            verfier les contraintes liées au hotesses(disponibilite et lieu du dernier vol) 
+             choisir les hotesses a affecter.
+       
+
 --insertion d'un vol pour la date 10/29/09 , de Lyon à Paris
 --chercher un avion disponible ( pas affecté à un vol de date  10/29/09 , 
 select  NumAvionF  from AvionsFret where not exists (select a.NumAvionF from AvionsFret a, VolsFret v where v.NumAvionF = a.NumAvionF and v.DateVolF > )
@@ -17,8 +45,32 @@ select  NumAvionF  from AvionsFret where not exists (select a.NumAvionF from Avi
 insert into  VolsFret values(vols_seq.NEXTVAL, to_date('10/29/09', 'MM/DD/YY') ,'Lyon','Paris',CURRENT_TIMESTAMP, 200,800, 2000, 1500, 1, 'N');
 
 
+2) Modification de la planification d'un vol existant  SERIALIZABLE
+   remplacer un avion par un autre      
 
+     verifier le modele de l'avion a remplacer 
+     verfier si l'avion remplaçant est disponible et le modele est equivalent a celui qui a eté remplacer
+     verifier que les  places s'il s'agit d'un avion passagers sont dans cet avion sont au minimum egales a l'avion remplacer.
+     affecter les memes numerotation que l'avion a remplacer.
+  
+    Modification de l'equipages 
+   pilotes:
+     rechercher dans la tables pilotes, les pilotes disponibles(voir planification )
+      si le  nombre est suffisant on affecte les pilotes 
+      sinon on interdit la supression.
+   hotesses:
+    rechercher dans la tables hotesses les hotesses disponibles(voir planification )
+      si le  nombre est suffisant on affecte les pilotes 
+      sinon on interdit la supression.  
 
+        
+    
+    
+3) supppression d'un vol 
+     selon les vols (fret ou  passagers) recupere les numero de vol  et la date de vol a supprimer
+      si un avion est est diponible , on reaffecte et on suprime l'ancicien et sinon on refuse la suppression
+       dans ce cas on lit dans la table place pour rechercher les places qui sont disponible ; on affecte toutes les places comme prevu dans le vol precedent.
+ 
 
 
 
