@@ -99,8 +99,13 @@ COMMIT;
 --Ajout et suppression d'un personnel de vol
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 --ajout d'un pilote
-
+insert into AffectationP values(1,1, to_date('10/29/09', 'MM/DD/YY') );
 --ajout d'une hotesse
+insert into AffectationH values(1,1, to_date('10/29/09', 'MM/DD/YY') );
+--suppression d'un pilote
+delete AffectationP where NumPersoP = 1;
+--suppression d'une hotesse
+delete AffectationH where NumPersoH = 1;
 
 COMMIT;
 
