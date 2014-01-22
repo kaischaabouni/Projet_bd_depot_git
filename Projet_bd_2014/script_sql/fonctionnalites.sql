@@ -55,3 +55,19 @@ select rp.* from Reservation r , ResaPassager rp, Client c
 	where (c.NumClient = r.NumClient and r.NumResa = rp.NumResa and c.NomC='Dupont' and c.PrenomC = 'Pierre' ) ;
 commit;
 
+--6--
+--Reservation de la part du client
+--
+SET AUTOCOMMIT OFF;
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--Le client choisit un vols pour la réservation en choisissant: horaires, depart, destination
+
+--Le client peut rajouter d'autres vols dans la réservation
+
+--On affiche les points du client
+select 
+--On vérifie si les points sont utilisables
+
+--Si l'utilisation est possible on remet le prix à 0
+
+--On remet le nombre de point à 0
