@@ -30,4 +30,5 @@ update VolsFret set Termine = 'O' where (NumAvionF = 7 and DateVolF = to_date('1
 --chercher a durée du vol
 select Duree from VolsFret where (NumAvionF = 7 and DateVolF = to_date('10/29/09', 'MM/DD/YY'));
 --mettre a jour les point des clients de ce vol, ajouter la duree d = 200
-update Client c set c.Points = c.Points + 200  where 
+update Client c set c.Points = c.Points + 200  where c.
+
