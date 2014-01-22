@@ -47,5 +47,25 @@ insert into Qualification values(2,2,20);
 
 insert into AffectationP values(1,1, to_date('10/29/09', 'MM/DD/YY') );
 --error  pas qualifiquation pour ce modele
-insert into AffectationP values(2,1, to_date('10/29/09', 'MM/DD/YY') );
+
+
+--tester trigger resa passager , verifier si place existe dans l'avion
+----les places de l'avion passager n°2
+insert into Places values(2,1,1,'hublot');
+insert into Places values(2,2,1,'hublot');
+insert into Places values(2,3,1,'hublot');
+insert into Places values(2,4,1,'hublot');
+----les clients
+insert into Client values(1,'chaabouni','kais',31,'antoine','st martin', 38400, 'France', 'Tunisie', 700);
+insert into Client values(2,'shimabukuro','emmanuel',30,'physique','st martin', 38400, 'France', 'France', 400);
+----
+insert into Reservation values(1,1,to_date('10/29/09'));
+insert into Reservation values(2,1,to_date('10/29/09'));
+insert into Reservation values(3,2,to_date('10/29/09'));
+insert into Reservation values(4,2,to_date('10/29/09'));
+----
+insert into ResaPassager values(4,to_date('10/29/09'),1,1,200);
+insert into ResaPassager values(4,to_date('10/29/09'),2,1,200);
+insert into ResaPassager values(4,to_date('10/29/09'),1,1,200);
+insert into ResaPassager values(4,to_date('10/29/09'),1,1,200);
 

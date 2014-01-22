@@ -69,7 +69,7 @@ constraint  fk_VolsPassager FOREIGN KEY (NumAvionP) references AvionsPassagers(N
 
 create table VolsFret(
 NumVolF varchar2(30) not null,
-DateVolF  timestamp not null,
+DateVolF  Date not null,
 Origine varchar2(30) not null,
 Destination varchar2(30) not null,
 HeureDepGMT timestamp,
@@ -118,7 +118,7 @@ CONSTRAINT pk_Client PRIMARY KEY (NumClient)
 create table Reservation(
 NumResa integer NOT NULL,
 NumClient integer NOT NULL,
-DateResa timestamp NOT NULL,
+DateResa Date not null,
 CONSTRAINT pk_Resa PRIMARY KEY (NumResa),
 CONSTRAINT fk_Resa FOREIGN KEY (NumClient) references Client(NumClient)
 );
