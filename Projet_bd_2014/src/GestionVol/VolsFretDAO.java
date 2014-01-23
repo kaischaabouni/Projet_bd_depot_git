@@ -1,10 +1,11 @@
 package GestionVol;
 
 import Main.DAO;
+import java.sql.ResultSet;
 
 public class VolsFretDAO extends DAO<VolsFretDAO>{
 
-	public VolsFretDAO ShowList(long id) {
+	public ResultSet ShowList() {
 		return null;
 	}
 

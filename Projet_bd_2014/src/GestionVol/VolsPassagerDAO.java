@@ -1,11 +1,12 @@
 package GestionVol;
 
 import Main.DAO;
+import java.sql.ResultSet;
 
 public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 
 	
-	public VolsPassagerDAO ShowList(long id) {
+	public ResultSet ShowList() {
 		return null;
 	}
 

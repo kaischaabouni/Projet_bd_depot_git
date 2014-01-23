@@ -1,10 +1,11 @@
 package GestionReservation;
 
+import java.sql.ResultSet;
 import Main.DAO;
 
 public class ReservationFretDAO extends DAO<ReservationFretDAO>{
 
-	public ReservationFretDAO ShowList(long id) {
+	public ResultSet ShowList() {
 		return null;
 	}
 
