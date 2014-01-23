@@ -9,11 +9,11 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 		return null;
 	}
 
-	public ReservationPassagerDAO create(ReservationPassagerDAO obj) {
+	public void create(ReservationPassagerDAO obj) {
 		return null;
 	}
 
-	public ReservationPassagerDAO update(ReservationPassagerDAO obj) {
+	public void update(ReservationPassagerDAO obj) {
 		return null;
 	}
 
