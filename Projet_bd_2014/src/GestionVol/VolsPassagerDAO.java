@@ -6,7 +6,8 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 
 	
 	public VolsPassagerDAO ShowList(long id) {
-		return null;
+		String query ="select * from VolsPassagers";
+		ResulSet rs = conn.exec
 	}
 
 	public VolsPassagerDAO create(VolsPassagerDAO obj) {
