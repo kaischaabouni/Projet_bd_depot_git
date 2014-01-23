@@ -1,10 +1,11 @@
 package GestionReservation;
 
+import java.sql.ResultSet;
 import Main.DAO;
 
 public class ReservationDAO extends DAO<ReservationDAO>{
 
-	public ReservationDAO ShowList(long id) {
+	public ResultSet ShowList() {
 		return null;
 	}
 

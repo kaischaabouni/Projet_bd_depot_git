@@ -2,10 +2,28 @@ package GestionVol;
 
 import Main.DAO;
 
-public class VolsFretDAO extends DAO<VolsFretDAO>{
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-	public VolsFretDAO ShowList(long id) {
-		return null;
+public class VolsFretDAO extends DAO<VolsFretDAO>{
+    
+	ResultSet resultat;
+	
+	public ResultSet ShowList() {
+		
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("select * from volfret ....");
+			
+			return resultat;
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
+		return resultat;
+			
 	}
 
 	public VolsFretDAO create(VolsFretDAO obj) {
