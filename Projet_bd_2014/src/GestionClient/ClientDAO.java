@@ -28,13 +28,11 @@ public class ClientDAO extends DAO<ClientDAO>{
 	}
 
 	
-	public ClientDAO create(ClientDAO obj) {
-		return null;
+	public void create(ClientDAO obj) {
 	}
 
 	
-	public ClientDAO update(ClientDAO obj) {
-		return null;
+	public void update(ClientDAO obj) {
 	}
 
 	

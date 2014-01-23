@@ -5,17 +5,17 @@ import java.sql.Timestamp;
 
 public class VolsPassager {
 
-	private String NumVolP;
-	private Date DateVolP;
+	private int NumVolP;
+	private String DateVolP;
 	private String Origine;
 	private String Destination;
-	private Timestamp HeurDepGMT;
+	private String HeurDepGMT;
 	private int Duree;
 	private int Distance;
 	private int Nb1ClMin;
 	private int Nb2ClMin;
 	private int NumAvionP;
-	private boolean Termine; //(Termine in ('O','N')
+	private String Termine; //(Termine in ('O','N')
 	
 	
 	
@@ -42,12 +42,12 @@ public class VolsPassager {
 	}
 
 
-	public Timestamp getHeurDepGMT() {
+	public String getHeurDepGMT() {
 		return HeurDepGMT;
 	}
 
 
-	public void setHeurDepGMT(Timestamp heurDepGMT) {
+	public void setHeurDepGMT(String heurDepGMT) {
 		HeurDepGMT = heurDepGMT;
 	}
 
@@ -102,32 +102,32 @@ public class VolsPassager {
 	}
 
 
-	public boolean isTermine() {
+	public String isTermine() {
 		return Termine;
 	}
 
 
-	public void setTermine(boolean termine) {
+	public void setTermine(String termine) {
 		Termine = termine;
 	}
 
 
-	public String getNumVolP() {
+	public int getNumVolP() {
 		return NumVolP;
 	}
 
 
-	public void setNumVolP(String numVolP) {
+	public void setNumVolP(int numVolP) {
 		NumVolP = numVolP;
 	}
 
 
-	public Date getDateVolP() {
+	public String getDateVolP() {
 		return DateVolP;
 	}
 
 
-	public void setDateVolP(Date dateVolP) {
+	public void setDateVolP(String dateVolP) {
 		DateVolP = dateVolP;
 	}
 

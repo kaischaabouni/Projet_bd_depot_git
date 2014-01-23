@@ -9,8 +9,8 @@ public abstract class DAO<Type> {
 	protected Connection cn = Connexion.OpenConnexion();
 	
 	public abstract ResultSet ShowList();
-	public abstract Type create(Type obj);
-	public abstract Type update(Type obj);
+	public abstract void create(Type obj);
+	public abstract void update(Type obj);
 	public abstract void delete(Type obj);
 	
 }
