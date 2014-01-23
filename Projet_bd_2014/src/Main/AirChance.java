@@ -2,7 +2,7 @@ package Main;
 
 import GestionVol.VolsFretMain;
 import GestionVol.VolsPassagerMain;
-import GestionReservation.ReservationMain;
+import GestionReservation.ReservationFretMain;
 import GestionClient.ClientMain;
 
 public class AirChance{
@@ -45,7 +45,7 @@ public class AirChance{
 	  	    	    
 	  	    	    // gestion Réservations
 	  	    	    case "3.1" : case "3.2" : case "3.3" : case "3.4" : 
-	  	    	    	ReservationMain Resa = new ReservationMain();
+	  	    	    	ReservationFretMain Resa = new ReservationFretMain();
 	  	    	    	if(action.equals("3.1")) Resa.ShowListeReservations(); //Consulter les réservations
 	  	    	    	if(action.equals("3.2")) Resa.CreateReservation();     //Ajouter une nouvelle réservation
 	  	    	    	if(action.equals("3.3")) Resa.EditReservation();       //Modifier une réservation
