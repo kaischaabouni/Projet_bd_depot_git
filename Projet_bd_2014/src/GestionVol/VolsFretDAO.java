@@ -11,7 +11,6 @@ public class VolsFretDAO extends DAO<VolsFretDAO>{
 	ResultSet resultat;
 	
 	public ResultSet ShowList() {
-		
 		try{
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select * from volfret ....");
@@ -22,20 +21,40 @@ public class VolsFretDAO extends DAO<VolsFretDAO>{
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
 			System.out.println("Message d'erreur : "+e.getMessage());
 		}
-		return resultat;
-			
+		return resultat;	
 	}
 
 	public void create(VolsFretDAO obj) {
-		return null;
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("insert into volfret ....");
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
 	public void update(VolsFretDAO obj) {
-		return null;
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("update volfret ....");
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
 	public void delete(VolsFretDAO obj) {
-		
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("delete from volfret ....");
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
 }

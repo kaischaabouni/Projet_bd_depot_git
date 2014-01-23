@@ -12,7 +12,6 @@ public class ClientDAO extends DAO<ClientDAO>{
 	ResultSet resultat;
 	
 	public ResultSet ShowList() {
-		
 		try{
         Statement requete = cn.createStatement();
 		ResultSet resultat = requete.executeQuery("select * from client");
@@ -24,23 +23,42 @@ public class ClientDAO extends DAO<ClientDAO>{
 			System.out.println("Message d'erreur : "+e.getMessage());
 		}
 		return resultat;
+	}
+
+	
+    public ResultSet ShowListVolPassager(int NumClient) {
+		try{
+        Statement requete = cn.createStatement();
+		ResultSet resultat = requete.executeQuery("select * from volpassager ....");
 		
-	}
-
-	
-	public void create(ClientDAO obj) {
-		return null;
-	}
-
-	
-	public void update(ClientDAO obj) {
-		return null;
-	}
-
-	
-	public void delete(ClientDAO obj) {
+		return resultat;
 		
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
+		return resultat;
 	}
+    
+    
+    public ResultSet ShowListVolFret(int NumClient) {
+		try{
+        Statement requete = cn.createStatement();
+		ResultSet resultat = requete.executeQuery("select * from list volfret  ....");
+		
+		return resultat;
+		
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
+		return resultat;	
+	}
+	
+	
+	public void create(ClientDAO obj) {}
+	public void update(ClientDAO obj) {}
+	public void delete(ClientDAO obj) {}
 
 	
 }

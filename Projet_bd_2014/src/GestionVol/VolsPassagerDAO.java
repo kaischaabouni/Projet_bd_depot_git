@@ -11,7 +11,6 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
     ResultSet resultat;
 	
 	public ResultSet ShowList() {
-		
 		try{
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select * from volpassager ....");
@@ -22,16 +21,26 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
 			System.out.println("Message d'erreur : "+e.getMessage());
 		}
-		return resultat;
-			
+		return resultat;	
 	}
 
+	
 	public void create(VolsPassagerDAO obj) {
 		try{
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select * from volpassager ....");
 			
-			return resultat;
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
+	}
+
+	
+	public void update(VolsPassagerDAO obj) {
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("update volpassager ....");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
@@ -39,12 +48,17 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 		}
 	}
 
-	public void update(VolsPassagerDAO obj) {
-		return null;
-	}
-
+	
 	public void delete(VolsPassagerDAO obj) {
-		
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("delete from volpassager ....");
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
+	
 }
