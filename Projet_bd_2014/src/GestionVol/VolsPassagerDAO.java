@@ -14,7 +14,7 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 		
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select * from volpassager ....");
+			ResultSet resultat = requete.executeQuery("select * from VolsPassager");
 			
 			return resultat;
 			

@@ -18,5 +18,4 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 	public void delete(ReservationPassagerDAO obj) {
 		
 	}
-
 }
