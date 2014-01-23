@@ -1,5 +1,8 @@
 package GestionVol;
 
+import java.sql.ResultSet;
+
+import GestionClient.ClientDAO;
 import Main.DAO;
 
 public class VolsPassagerMain {
@@ -30,11 +33,23 @@ public class VolsPassagerMain {
 	public void ShowListeVols() {
 		
 		//debut
-		System.out.println("===> Ajouter un nouveau vol \n");
+		System.out.println("===> Consulter la liste des Vols \n");
 		
-		//....
-		System.out.println("suite de fonction");
+		//creation Data Access Object
+		DAO<VolsPassagerDAO> CLDAO = new VolsPassagerDAO();
 		
+		ResultSet resultat = CLDAO.ShowList();
+		
+		try{
+		  while(resultat.next()){ 
+		     System.out.println("Num Vol = " +resultat.getInt("NumVolP")
+		    					+ ", Origine = " + resultat.getString("Origine")
+								+ ", destination = " + resultat.getString("Destination"));
+
+		  }
+		}catch(Exception e){ System.out.println("erreur exception"); }
+		
+				
 		//fin
 		System.out.println("****************************************************\n");
 	}

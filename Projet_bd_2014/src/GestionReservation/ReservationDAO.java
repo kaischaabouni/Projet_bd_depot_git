@@ -10,11 +10,9 @@ public class ReservationDAO extends DAO<ReservationDAO>{
 	}
 
 	public void create(ReservationDAO obj) {
-		return null;
 	}
 
 	public void update(ReservationDAO obj) {
-		return null;
 	}
 
 	public void delete(ReservationDAO obj) {

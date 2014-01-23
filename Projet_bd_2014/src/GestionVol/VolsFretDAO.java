@@ -27,11 +27,9 @@ public class VolsFretDAO extends DAO<VolsFretDAO>{
 	}
 
 	public void create(VolsFretDAO obj) {
-		return null;
 	}
 
 	public void update(VolsFretDAO obj) {
-		return null;
 	}
 
 	public void delete(VolsFretDAO obj) {

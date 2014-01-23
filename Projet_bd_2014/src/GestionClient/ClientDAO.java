@@ -29,12 +29,10 @@ public class ClientDAO extends DAO<ClientDAO>{
 
 	
 	public void create(ClientDAO obj) {
-		return null;
 	}
 
 	
 	public void update(ClientDAO obj) {
-		return null;
 	}
 
 	
