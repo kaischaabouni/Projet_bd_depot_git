@@ -1,13 +1,14 @@
+
 package GestionVol;
 
 import Main.DAO;
+import java.sql.ResultSet;
 
 public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 
 	
-	public VolsPassagerDAO ShowList(long id) {
-		String query ="select * from VolsPassagers";
-		ResulSet rs = conn.exec
+	public ResultSet ShowList() {
+		return null;
 	}
 
 	public VolsPassagerDAO create(VolsPassagerDAO obj) {
@@ -23,3 +24,4 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 	}
 
 }
+
