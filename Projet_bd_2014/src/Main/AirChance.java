@@ -8,7 +8,6 @@ import GestionClient.ClientMain;
 public class AirChance{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		AfficherMenu();
 		
