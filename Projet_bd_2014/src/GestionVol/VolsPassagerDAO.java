@@ -26,11 +26,20 @@ public class VolsPassagerDAO extends DAO<VolsPassagerDAO>{
 			
 	}
 
-	public VolsPassagerDAO create(VolsPassagerDAO obj) {
-		return null;
+	public void create(VolsPassagerDAO obj) {
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("select * from volpassager ....");
+			
+			return resultat;
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
-	public VolsPassagerDAO update(VolsPassagerDAO obj) {
+	public void update(VolsPassagerDAO obj) {
 		return null;
 	}
 

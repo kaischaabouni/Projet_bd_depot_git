@@ -9,11 +9,11 @@ public class ReservationFretDAO extends DAO<ReservationFretDAO>{
 		return null;
 	}
 
-	public ReservationFretDAO create(ReservationFretDAO obj) {
+	public void create(ReservationFretDAO obj) {
 		return null;
 	}
 
-	public ReservationFretDAO update(ReservationFretDAO obj) {
+	public void update(ReservationFretDAO obj) {
 		return null;
 	}
 
