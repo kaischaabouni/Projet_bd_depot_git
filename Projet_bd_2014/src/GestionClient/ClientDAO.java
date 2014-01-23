@@ -29,7 +29,7 @@ public class ClientDAO extends DAO<ClientDAO>{
     public ResultSet ShowListVolPassager(int NumClient) {
 		try{
         Statement requete = cn.createStatement();
-		ResultSet resultat = requete.executeQuery("select * from volpassager ....");
+		ResultSet resultat = requete.executeQuery("select * from volpassager where NumClient = "+ NumClient +"");
 		
 		return resultat;
 		
