@@ -110,7 +110,7 @@ public class AirChance{
 		System.out.println("****************************************************\n");
 		System.out.println("**************** Gestion Clients *******************");
 		System.out.println("4.1 : Consulter la liste des clients");
-		System.out.println("4.2 : Consulter la liste des vols d'un client");
+		System.out.println("4.2 : Consulter la liste des réservations d'un client");
 		System.out.println("****************************************************\n");
 		System.out.println("9 : Initialiser et peupler la base de données");
 		System.out.println("0 : Quitter");

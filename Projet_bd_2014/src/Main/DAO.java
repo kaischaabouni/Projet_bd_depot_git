@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class DAO<Type> {
 
-	// ouverture de la connexion
+public abstract class DAO<Type> {
+    
+	//ouverture de connexion
 	protected Connection cn = Connexion.OpenConnexion();
 	
 	public abstract ResultSet ShowList();
