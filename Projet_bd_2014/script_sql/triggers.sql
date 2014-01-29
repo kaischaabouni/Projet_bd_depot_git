@@ -1,3 +1,127 @@
+DROP TRIGGER AI_VolsPassager;
+DROP TRIGGER AI_VolsFret;
+DROP TRIGGER AI_AvionsPassagers;
+DROP TRIGGER AI_AvionsFret;
+DROP TRIGGER AI_Client;
+DROP TRIGGER AI_Reservation;
+DROP TRIGGER AI_Pilotes;
+DROP TRIGGER AI_Hotesses;
+DROP SEQUENCE Hotesses_seq;
+DROP SEQUENCE Pilotes_seq;
+DROP SEQUENCE Reservation_seq;
+DROP SEQUENCE Client_seq;
+DROP SEQUENCE AvionsPassagers_seq;
+DROP SEQUENCE AvionsFret_seq;
+DROP SEQUENCE NumVolF_NumVolP_seq;
+
+CREATE SEQUENCE AvionsPassagers_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_AvionsPassagers
+  before insert  on AvionsPassagers
+  for each row
+begin
+  if :NEW.NumAvionP is null then
+   select AvionsPassagers_seq.nextval into :NEW.NumAvionP FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE AvionsFret_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_AvionsFret
+  before insert  on AvionsFret
+  for each row
+begin
+  if :NEW.NumAvionF is null then
+   select AvionsFret_seq.nextval into :NEW.NumAvionF FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE NumVolF_NumVolP_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_VolsFret
+  before insert  on VolsFret
+  for each row
+begin
+  if :NEW.NumVolF is null then
+   select NumVolF_NumVolP_seq.nextval into :NEW.NumVolF FROM dual;
+  end if;
+end;
+/
+
+CREATE OR REPLACE TRIGGER AI_VolsPassager
+  before insert  on VolsPassager
+  for each row
+begin
+  if :NEW.NumVolP is null then
+   select NumVolF_NumVolP_seq.nextval into :NEW.NumVolP FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE Client_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_Client
+  before insert  on Client
+  for each row
+begin
+  if :NEW.NumClient is null then
+   select Client_seq.nextval into :NEW.NumClient FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE Reservation_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_Reservation
+  before insert  on Reservation
+  for each row
+begin
+  if :NEW.NumResa is null then
+   select Reservation_seq.nextval into :NEW.NumResa FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE Pilotes_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_Pilotes
+  before insert  on Pilotes
+  for each row
+begin
+  if :NEW.NumPersoP is null then
+   select Pilotes_seq.nextval into :NEW.NumPersoP FROM dual;
+  end if;
+end;
+/
+
+CREATE SEQUENCE Hotesses_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER AI_Hotesses
+  before insert  on Hotesses
+  for each row
+begin
+  if :NEW.NumPersoH is null then
+   select Hotesses_seq.nextval into :NEW.NumPersoH FROM dual;
+  end if;
+end;
+/
+
 CREATE OR REPLACE TRIGGER ContraintesVolFret
 AFTER INSERT OR UPDATE ON VolsFret
 DECLARE

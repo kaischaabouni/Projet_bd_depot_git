@@ -1,6 +1,6 @@
 package GestionReservation;
 
-public class ReservationMain {
+public class ReservationPassagerMain {
 
 	public void ShowListeReservations() {
 		
