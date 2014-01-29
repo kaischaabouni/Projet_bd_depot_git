@@ -2,6 +2,8 @@ package GestionVol;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VolsPassager {
 
@@ -16,7 +18,8 @@ public class VolsPassager {
 	private int Nb2ClMin;
 	private int NumAvionP;
 	private String Termine; //(Termine in ('O','N')
-	
+	List AffectationP = new ArrayList();
+	List AffectationH = new ArrayList();
 	
 	
 	public VolsPassager(){}
@@ -131,14 +134,36 @@ public class VolsPassager {
 		DateVolP = dateVolP;
 	}
 
+    
+	public List getAffectationP() {
+		return AffectationP;
+	}
 
+
+	public void setAffectationP(List affectationP) {
+		AffectationP = affectationP;
+	}
+	
+	
+	public List getAffectationH() {
+		return AffectationH;
+	}
+
+
+	public void setAffectationH(List affectationH) {
+		AffectationH = affectationH;
+	}
+
+
+	@Override
 	public String toString() {
 		return "VolsPassager [NumVolP=" + NumVolP + ", DateVolP=" + DateVolP
 				+ ", Origine=" + Origine + ", Destination=" + Destination
 				+ ", HeurDepGMT=" + HeurDepGMT + ", Duree=" + Duree
 				+ ", Distance=" + Distance + ", Nb1ClMin=" + Nb1ClMin
 				+ ", Nb2ClMin=" + Nb2ClMin + ", NumAvionP=" + NumAvionP
-				+ ", Termine=" + Termine + "]";
+				+ ", Termine=" + Termine + ", AffectationP=" + AffectationP
+				+ ", AffectationH=" + AffectationH + "]";
 	}
 	
 	

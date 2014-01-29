@@ -361,11 +361,13 @@ public class VolsFretMain {
 		//creation objet vol passager
 		VolsFret VolF = new VolsFret();
 		
+		int NumVolF = LectureClavier.lireEntier("Entrer le numéro de vol que vous voulez changer : ");
+		
 		//recupération dee donnees du vol
-		ResultSet InfoVolF = VFDAO.InfosVolF(LectureClavier.lireEntier("Entrer le numéro de vol que vous voulez changer : "));
+		ResultSet InfoVolF = VFDAO.InfosVolF(NumVolF);
 		try { InfoVolF.next(); 
 		      VolF.setNumVolF(InfoVolF.getString("NumVolF"));
-		      VolF.setDateVolF(java.sql.Date.valueOf(InfoVolF.getString("DateVolF")));
+		      //VolF.setDateVolF(java.sql.Date.valueOf(InfoVolF.getString("DateVolF")));
 		      VolF.setOrigine(InfoVolF.getString("Origine"));
 		      VolF.setDestination(InfoVolF.getString("Destination"));
 	       	  VolF.setHeureDepGMT(java.sql.Timestamp.valueOf(InfoVolF.getString("HeurDepGMT")));
@@ -389,22 +391,30 @@ public class VolsFretMain {
 		} catch (SQLException e) { System.out.println("erreur exception infos du vol choisie"); }
 		
 		
+		VolF.toString();
+		
+		
 		do{
 		  try{
 			    //Numéro de vol
-				if(VolF.getNumVolF() == null){
+			    System.out.println("Le numéro du vol : "+ VolF.getNumVolF());
+			    /*
+			    if(VolF.getNumVolF() == null){
 					System.out.println("Veuillez choisir le numéro du vol :");
 					VolF.setNumVolF(LectureClavier.lireChaine());	
 				}else{
 					System.out.println("Le numéro du vol : "+ VolF.getNumVolF());
+					if(LectureClavier.lireChaine() != "") VolF.setNumVolF(LectureClavier.lireChaine());
 				}
-				
+				*/
+			    
 				//Origine
 				if(VolF.getOrigine() == null){
 				    System.out.println("Veuillez choisir l'origine du vol :");
 				    VolF.setOrigine(LectureClavier.lireChaine());
 				}else{
 					System.out.println("L'origine : "+ VolF.getOrigine());
+					if(LectureClavier.lireChaine() != "") VolF.setOrigine(LectureClavier.lireChaine());
 				}
 				
 				//destination 
@@ -413,22 +423,27 @@ public class VolsFretMain {
 					VolF.setDestination(LectureClavier.lireChaine());
 				}else{
 					System.out.println("La distination : "+ VolF.getDestination());
+					if(LectureClavier.lireChaine() != "") VolF.setDestination(LectureClavier.lireChaine());
 				}
 				
 				//Date
+				System.out.println("La date : "+ VolF.getDateVolF());
+				/*
 				if(VolF.getDateVolF() == null){
 					System.out.println("La date (YYYY-MM-DD) :");
 					VolF.setDateVolF(java.sql.Date.valueOf(LectureClavier.lireChaine()));
 				}else{
 					System.out.println("La date : "+ VolF.getDateVolF());
+					if(LectureClavier.lireChaine() != "") VolF.setDateVolF(java.sql.Date.valueOf(LectureClavier.lireChaine()));
 				}
-				
+				*/
 				//heure
 				if(VolF.getHeureDepGMT() == null){
 					System.out.println("L'heure GMT :");
 					VolF.setHeureDepGMT(java.sql.Timestamp.valueOf(LectureClavier.lireChaine()));
 				}else{
 					System.out.println("L'Heure GMT : "+ VolF.getHeureDepGMT());
+					if(LectureClavier.lireChaine() != "") VolF.setHeureDepGMT(java.sql.Timestamp.valueOf(LectureClavier.lireChaine()));
 				}
 				
 				//Duree
@@ -436,6 +451,7 @@ public class VolsFretMain {
 					VolF.setDuree(LectureClavier.lireEntier("La durée (Min) :"));
 				}else{
 					System.out.println("La durée (Min) : "+ VolF.getDuree());
+					if(LectureClavier.lireChaine() != "") VolF.setDuree(LectureClavier.lireEntier("La durée (Min) :"));
 				}
 				
 				//Distance
@@ -443,6 +459,7 @@ public class VolsFretMain {
 					VolF.setDistance(LectureClavier.lireEntier("La distance (Km) :"));
 				}else{
 					System.out.println("La distance (KM) : "+ VolF.getDistance());
+					if(LectureClavier.lireChaine() != "") VolF.setDistance(LectureClavier.lireEntier("La distance (Km) :"));
 				}
 				
 				
@@ -478,6 +495,7 @@ public class VolsFretMain {
 					}
 				}else{
 					System.out.println("L'avion : "+ VolF.getNumAvionF());
+					if(LectureClavier.lireChaine() != "") VolF.setNumAvionF(LectureClavier.lireEntier("Veuillez choisir un numéro d'avion : "));
 				}
 				
 				
@@ -496,6 +514,7 @@ public class VolsFretMain {
 					VolF.setVolumeMin(LectureClavier.lireEntier("Veuillez choisir un volume min (entre 1 et "+VolumeMax+" supporter par l'avion choisie) pour ce vol : "));
 				}else{
 					System.out.println("Le volume : "+ VolF.getVolumeMin());
+					if(LectureClavier.lireChaine() != "") VolF.setVolumeMin(LectureClavier.lireEntier("Veuillez choisir un volume min (entre 1 et "+VolumeMax+" supporter par l'avion choisie) pour ce vol : "));
 				}
 				
 				//poids min
@@ -503,6 +522,7 @@ public class VolsFretMain {
 					VolF.setPoidsMin(LectureClavier.lireEntier("Veuillez choisir un poids min (entre 1 et "+PoidsMax+" supporter par l'avion choisie) pour ce vol : "));
 				}else{
 					System.out.println("Le poids (Kg) : "+ VolF.getPoidsMin());
+					if(LectureClavier.lireChaine() != "") VolF.setPoidsMin(LectureClavier.lireEntier("Veuillez choisir un poids min (entre 1 et "+PoidsMax+" supporter par l'avion choisie) pour ce vol : "));
 				}
 				
 				
@@ -557,14 +577,33 @@ public class VolsFretMain {
 					VolF.setAffectationP(NumPersoPRetenu);
 					
 				}else{
-					System.out.println("Les pilotes : "+VolF.getAffectationP());	
+					System.out.println("Les pilotes : "+VolF.getAffectationP());
+					if(LectureClavier.lireChaine() != ""){
+						for (int i = 0; i < NbrPilotes; i++) {
+							
+							int Num = 0;
+							Num = LectureClavier.lireEntier("Pilote "+i+" : ");
+							
+							//interdire d'ajouter le meme pilote deux fois
+							//accepter juste les numeros afficher dans le tableau
+							while(!NumPersoPList.contains(Num)){
+								Num = LectureClavier.lireEntier("Pilote ici "+i+" : ");
+							}
+							
+							if(NumPersoPList.contains(Num)) NumPersoPRetenu.add(Num);
+							
+						}
+						
+						//ajouter pilote
+						VolF.setAffectationP(NumPersoPRetenu);
+					}
 				}
 				
 						
 				//pas de hottesses dans vol fret
 				
 				//ajouter vol dans la base de donnees
-				VFDAO.create(VolF);
+				VFDAO.update(VolF);
 				erreur = false;
 				
 			
@@ -623,41 +662,23 @@ public class VolsFretMain {
 		
 		//debut
 		System.out.println("===> Supprimer un vol \n");
-		
-        boolean erreur = false;
-		
-		do{
-		  try{
-			
-			
-			
-			
-			
-			  erreur = false;
-		  }catch(Exception e){
-			  
-			//recuperation du message d'erreur
-			  String Msg = e.getMessage();
-			  String[] AllMsg = null; 
-			  if(Msg != null) AllMsg = Msg.split(",");
-			  else { AllMsg[0] = ""; AllMsg[1]= ""; }
-			  
-			  //afficher le message d'erreur et initialiser l'attribut
-			  switch (AllMsg[0]) {
-			     case value:
 				
-				 break;
-
-			     default:
-				 break;
-			  }
-			  
-			  erreur = true;
-		  }
-		}while(erreur = true);
+		//afficher la liste des vols
+		ShowListeVols();
+						
+		//creation Data Access Object
+		VolsFretDAO VFDAO = new VolsFretDAO();
 		
+		//creation objet vol passager
+		VolsFret VolF = new VolsFret();
+		
+		System.out.println("Entrer le numéro de vol que vous voulez supprimer : ");
+		VolF.setNumVolF(LectureClavier.lireChaine());
+		        
+		VFDAO.delete(VolF);
+				
 		//fin
-	    System.out.println("****************************************************\n");
+		System.out.println("****************************************************\n");
 		
 	}
 
@@ -668,37 +689,15 @@ public class VolsFretMain {
 		//debut
 		System.out.println("===> Confirmer la fin d'un vol \n");
 		
-        boolean erreur = false;
-		
-		do{
-		  try{
-			
-			
-			
-			
-			
-			  erreur = false;
-		  }catch(Exception e){
-			  
-			//recuperation du message d'erreur
-			  String Msg = e.getMessage();
-			  String[] AllMsg = null; 
-			  if(Msg != null) AllMsg = Msg.split(",");
-			  else { AllMsg[0] = ""; AllMsg[1]= ""; }
-			  
-			  //afficher le message d'erreur et initialiser l'attribut
-			  switch (AllMsg[0]) {
-			     case value:
+		//afficher la liste des vols
+		ShowListeVols();
 				
-				 break;
-
-			     default:
-				 break;
-			  }
-			
-			  erreur = true;
-		  }
-		}while(erreur = true);
+		//creation Data Access Object
+		VolsFretDAO VFDAO = new VolsFretDAO();
+								
+		int NumVolF = LectureClavier.lireEntier("Entrer le numéro de vol que vous voulez valider : ");
+        
+		VFDAO.ValiderVolF(NumVolF);
 		
 		//fin
 	    System.out.println("****************************************************\n");

@@ -1,19 +1,8 @@
 package GestionReservation;
 
-import java.sql.Date;
-
-import GestionClient.Client;
-
 public class ReservationPassagerMain {
 
-	public void ShowListeReservations(Client c) {
-		
-		String NumVolP;
-		Date DateVolP;
-		int NumPlace; 
-		int NumResa;
-		float Prix;
-		
+	public void ShowListeReservations() {
 		
 		//debut
 		System.out.println("===> Consulter les réservations \n");

@@ -78,7 +78,8 @@ public class VolsFretDAO extends DAO<VolsFret>{
 	public void delete(VolsFret obj) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("delete from volfret ....");
+			ResultSet resultat = requete.executeQuery("delete from volsfret "
+					                                + "where NumVolF = "+obj.getNumVolF()+"");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
@@ -158,16 +159,43 @@ public class VolsFretDAO extends DAO<VolsFret>{
 		return resultat;
 	}
 
+    
+	//infos d'un vol fret utiliser lors du modification d'un vol
+	public ResultSet InfosVolF(int NumVolF) {
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("select * from VolsFret "
+					                                + "where NumVolF ='"+NumVolF+"' "
+					                                + "");
+			return resultat;
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
+		return resultat;
+	}
 
-	public ResultSet InfosVolF(int lireEntier) {
+
+	//infos des pilotes affecter à un vol fret utiliser lors du modification d'un vol
+	public ResultSet InfoPilotesAffecter(String numVolF, Date dateVolF) {
 		
 		return null;
 	}
 
 
-	public ResultSet InfoPilotesAffecter(String numVolF, Date dateVolF) {
-		
-		return null;
+	//validation d'un vol fret
+	public void ValiderVolF(int NumVolF) {
+		try{
+	        Statement requete = cn.createStatement();
+			ResultSet resultat = requete.executeQuery("update volsfret "
+					                                + "set Termine='O' "
+					                                + "where NumVolF = "+NumVolF+" ");
+			
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}
 	}
 
 

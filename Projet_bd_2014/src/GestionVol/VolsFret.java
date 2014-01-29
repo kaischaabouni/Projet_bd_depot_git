@@ -21,7 +21,7 @@ public class VolsFret {
 	private float VolumeMin;
 	private float PoidsMin;
 	private int NumAvionF;
-	private boolean Terminer;
+	private boolean Terminer; //(Termine in ('O','N')
 	List AffectationP = new ArrayList();
 	
 	
