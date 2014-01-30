@@ -1,6 +1,7 @@
 package GestionReservation;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.nocrala.tools.texttablefmt.Table;
 
@@ -109,18 +110,18 @@ public class ReservationPassagerMain {
 		NumClient =  Integer.parseInt(LectureClavier.lireChaine());
 		
 		ResultSet resultat2 = ReservationDAO.chercherPlaceLibre(NumVol, dateVolP);
-		Table t2 = new Table(5);
+		Table t2 = new Table(4);
 		
 		try{
-		  t2.addCell("NumVolP");    t2.addCell("DateVolP");  t2.addCell("NumPlace");
-		  t2.addCell("NumResa");    t2.addCell("Prix"); 
+		  t2.addCell("NumAvionP");    t2.addCell("NumPlace");  t2.addCell("Classe");
+		  t2.addCell("Position");     
+		  
 		  while(resultat2.next()){ 
 			  
-			  t2.addCell(resultat.getString("NumVolP"));
-			  t2.addCell(resultat.getString("DateVolP"));
-			  t2.addCell(resultat.getString("NumPlace"));
-			  t2.addCell(resultat.getString("NumResa"));
-			  t2.addCell(resultat.getString("Prix"));
+			  t2.addCell(resultat2.getString("NumAvionP"));
+			  t2.addCell(resultat2.getString("NumPlace"));
+			  t2.addCell(resultat2.getString("Classe"));
+			  t2.addCell(resultat2.getString("Position"));
 		  }
 		}catch(Exception e){ System.out.println("erreur exception"); }
 		
@@ -132,11 +133,25 @@ public class ReservationPassagerMain {
 		System.out.println("Choisissez votre numéro de place. \n");
 		NumPlace =  Integer.parseInt(LectureClavier.lireChaine());
 
-		
+		resap.setNumVolP(NumVol);
 		resap.setDateVolP(dateVolP);
-		resap.setNumPlace(NumClient);
+		resap.setNumPlace(NumPlace);
+		resap.setNumResa(NumClient);
+		resap.setPrix(800);
+
+		resa.setNumClient(NumClient);
+		resa.setDateResa(dateVolP);
 		
-		reservationPassager.create(resap);
+		ReservationDAO.create(resa);
+
+
+
+		try {
+			reservationPassager.create(resap);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	    //fin
 		System.out.println("****************************************************\n");

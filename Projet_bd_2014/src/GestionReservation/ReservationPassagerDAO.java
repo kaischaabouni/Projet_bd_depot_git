@@ -25,21 +25,6 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 	}
 
 	
-	public void create(ReservationPassager obj) {
-		try{
-	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("insert into ResPassager values( '',"
-														+obj.getDateVolP()+","
-														+obj.getNumPlace()+","
-														+obj.getNumResa()+","
-														+obj.getPrix()+")");
-		}catch(SQLException e){	
-			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
-			System.out.println("Message d'erreur : "+e.getMessage());
-		}
-	}
-
-	
 	public void update(ReservationPassagerDAO obj) {
 		try{
 	        Statement requete = cn.createStatement();
@@ -62,6 +47,21 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 			System.out.println("Message d'erreur : "+e.getMessage());
 		}
 	}
+	
+	public void create(ReservationPassager obj) throws SQLException {
+		try{
+			Statement requete = cn.createStatement();
+			requete.executeQuery("insert into ResaPassager "
+				           + "values("+obj.getNumVolP()+","
+				           + "to_date('"+obj.getDateVolP()+"','dd-mm-yyyy'),"
+				           + ""+obj.getNumPlace()+","
+				           + ""+obj.getNumResa()+","
+				           + ""+obj.getPrix()+")");
+		}catch(SQLException e){	
+			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
+			System.out.println("Message d'erreur : "+e.getMessage());
+		}		
+	}
 
 
 	@Override
@@ -69,5 +69,4 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

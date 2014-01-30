@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReservationPassager {
 	
-	private String NumVolP;
+	private int NumVolP;
 	private String DateVolP;
 	private int NumPlace; 
 	private int NumResa;
@@ -14,12 +14,12 @@ public class ReservationPassager {
 	public ReservationPassager(){}
 	
 	
-	public String getNumVolP() {
+	public int getNumVolP() {
 		return NumVolP;
 	}
 	
 	
-	public void setNumVolP(String numVolP) {
+	public void setNumVolP(int numVolP) {
 		NumVolP = numVolP;
 	}
 	

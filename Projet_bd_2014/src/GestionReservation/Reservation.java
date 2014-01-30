@@ -6,7 +6,7 @@ public class Reservation {
 
 	private int NumResa;
 	private int NumClient;
-	private Date DateResa;
+	private String DateResa;
 	
 	
 	public Reservation(){}
@@ -32,12 +32,12 @@ public class Reservation {
 	}
 	
 	
-	public Date getDateResa() {
+	public String getDateResa() {
 		return DateResa;
 	}
 	
 	
-	public void setDateResa(Date dateResa) {
+	public void setDateResa(String dateResa) {
 		DateResa = dateResa;
 	}
 	

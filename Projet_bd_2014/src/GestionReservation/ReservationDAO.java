@@ -28,10 +28,13 @@ public class ReservationDAO extends DAO<ReservationDAO>{
 	}
 
 	
-	public void create(Reservation obj) {
+	public static void create(Reservation obj) {
 		try{
-	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("insert into reservation ....");
+	        Statement requete = cn.createStatement();	
+			
+			requete.executeQuery("insert into reservation "
+			           + "values('','"+obj.getNumClient()+"',"
+			           + "to_date('"+obj.getDateResa()+"','dd-mm-yyyy'))");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
@@ -95,18 +98,15 @@ public class ReservationDAO extends DAO<ReservationDAO>{
 
 
 	public static ResultSet chercherPlaceLibre(int numVol, String dateVolP) {
-		
-	    
 		try{
 
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select * "
-					                                + "from places p ,volspassager v"
-					                                + "where p.NumAvionP = v.NumAvionP"
-					                                + "and NumAvionP ='"+dateVolP+"'");
+					                                + "from places p ,volspassager v "
+					                                + "where v.NumVolP ="+numVol+" "
+					                                + "and p.NumAvionP = v.NumAvionP");
 			
 			return resultat;
-			select * from places where NumAvionP='4';
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
