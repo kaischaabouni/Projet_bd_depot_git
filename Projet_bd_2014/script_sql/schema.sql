@@ -63,6 +63,7 @@ constraint ck1_VolsPassager CHECK (Duree > 0),
 constraint ck2_VolsPassager CHECK (Distance > 0),
 constraint ck3_VolsPassager CHECK (Nb1ClMin > 0),
 constraint ck4_VolsPassager CHECK (Nb2ClMin  > 0),
+constraint ck5_VolsPassager CHECK (Origine <> Destination),
 constraint pk_VolsPassager PRIMARY KEY(NumVolP,DateVolP),
 constraint  fk_VolsPassager FOREIGN KEY (NumAvionP) references AvionsPassagers(NumAvionP) ON DELETE CASCADE
 );
@@ -84,6 +85,7 @@ constraint ck2_VolsFret CHECK (Distance > 0),
 constraint ck3_VolsFret CHECK (VolumeMin   > 0),
 constraint ck4_VolsFret CHECK (Distance > 0),
 constraint ck5_VolsFret CHECK (PoidsMin > 0),
+constraint ck5_VolsPassager CHECK (Origine <> Destination),
 constraint pk_VolsFret PRIMARY KEY (NumVolF,DateVolF),
 constraint fk_VolsFret FOREIGN KEY (NumAvionF) references AvionsFret(NumAvionF)
 );
