@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Connexion {
 
-	private static String User     = "chaabouk";
+	private static String User     = "shimabue";
 	private static String Password = "bd2013";
 	private static String ConnUrl  = "jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:ufrima";
 	private static Connection Conn = null;

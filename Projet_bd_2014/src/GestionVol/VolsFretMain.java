@@ -1,3 +1,4 @@
+
 package GestionVol;
 
 import java.sql.Date;
@@ -244,7 +245,7 @@ public class VolsFretMain {
 			    	 VolF.setDateVolF(null);	
 				 break;
 				 
-			     case "Volume": // volume min < volume max 
+			     case "13": // volume min < volume max 
 			    	 System.out.println("Erreur : "+AllMsg[1]);
 			    	 VolF.setVolumeMin(0);	
 				 break;

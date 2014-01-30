@@ -13,8 +13,7 @@ public class ReservationFretDAO extends DAO<ReservationFretDAO>{
 	public ResultSet ShowList() {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select * from reservation fret ....");
-			
+			ResultSet resultat = requete.executeQuery("select * from ResaFret");			
 			return resultat;
 			
 		}catch(SQLException e){	

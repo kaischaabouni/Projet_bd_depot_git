@@ -13,8 +13,8 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 	public ResultSet ShowList() {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select * from reservation passager ....");
-			
+			ResultSet resultat = requete.executeQuery("select * from ResaPassager");
+						
 			return resultat;
 			
 		}catch(SQLException e){	
@@ -25,11 +25,14 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 	}
 
 	
-	public void create(ReservationPassagerDAO obj) {
+	public void create(ReservationPassager obj) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("insert * from reservation passager ....");
-			
+			ResultSet resultat = requete.executeQuery("insert into ResPassager values( '',"
+														+obj.getDateVolP()+","
+														+obj.getNumPlace()+","
+														+obj.getNumResa()+","
+														+obj.getPrix()+")");
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
 			System.out.println("Message d'erreur : "+e.getMessage());
@@ -58,6 +61,13 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
 			System.out.println("Message d'erreur : "+e.getMessage());
 		}
+	}
+
+
+	@Override
+	public void create(ReservationPassagerDAO obj) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

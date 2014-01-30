@@ -1,3 +1,4 @@
+
 package GestionVol;
 
 import java.sql.Date;
@@ -7,17 +8,17 @@ import java.util.List;
 
 public class VolsPassager {
 
-	private int NumVolP;
-	private String DateVolP;
+	private String NumVolP;
+	private Date DateVolP;
 	private String Origine;
 	private String Destination;
-	private String HeurDepGMT;
+	private Timestamp HeureDepGMT;
 	private int Duree;
 	private int Distance;
 	private int Nb1ClMin;
 	private int Nb2ClMin;
 	private int NumAvionP;
-	private String Termine; //(Termine in ('O','N')
+	private boolean Terminer; //(Termine in ('O','N')
 	List AffectationP = new ArrayList();
 	List AffectationH = new ArrayList();
 	
@@ -45,13 +46,13 @@ public class VolsPassager {
 	}
 
 
-	public String getHeurDepGMT() {
-		return HeurDepGMT;
+	public Timestamp getHeureDepGMT() {
+		return HeureDepGMT;
 	}
 
 
-	public void setHeurDepGMT(String heurDepGMT) {
-		HeurDepGMT = heurDepGMT;
+	public void setHeureDepGMT(Timestamp heureDepGMT) {
+		HeureDepGMT = heureDepGMT;
 	}
 
 
@@ -105,32 +106,32 @@ public class VolsPassager {
 	}
 
 
-	public String isTermine() {
-		return Termine;
+	public boolean getTerminer() {
+		return Terminer;
 	}
 
 
-	public void setTermine(String termine) {
-		Termine = termine;
+	public void setTerminer(boolean terminer) {
+		Terminer = terminer;
 	}
 
 
-	public int getNumVolP() {
+	public String getNumVolP() {
 		return NumVolP;
 	}
 
 
-	public void setNumVolP(int numVolP) {
+	public void setNumVolP(String numVolP) {
 		NumVolP = numVolP;
 	}
 
 
-	public String getDateVolP() {
+	public Date getDateVolP() {
 		return DateVolP;
 	}
 
 
-	public void setDateVolP(String dateVolP) {
+	public void setDateVolP(Date dateVolP) {
 		DateVolP = dateVolP;
 	}
 
@@ -159,10 +160,10 @@ public class VolsPassager {
 	public String toString() {
 		return "VolsPassager [NumVolP=" + NumVolP + ", DateVolP=" + DateVolP
 				+ ", Origine=" + Origine + ", Destination=" + Destination
-				+ ", HeurDepGMT=" + HeurDepGMT + ", Duree=" + Duree
+				+ ", HeurDepGMT=" + HeureDepGMT + ", Duree=" + Duree
 				+ ", Distance=" + Distance + ", Nb1ClMin=" + Nb1ClMin
 				+ ", Nb2ClMin=" + Nb2ClMin + ", NumAvionP=" + NumAvionP
-				+ ", Termine=" + Termine + ", AffectationP=" + AffectationP
+				+ ", Termine=" + Terminer + ", AffectationP=" + AffectationP
 				+ ", AffectationH=" + AffectationH + "]";
 	}
 	

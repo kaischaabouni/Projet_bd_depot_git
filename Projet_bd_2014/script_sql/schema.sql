@@ -150,16 +150,15 @@ constraint fk1_ResaFret  FOREIGN KEY (NumVolF,DateVolF) references VolsFret(NumV
 constraint fk2_ResaFret FOREIGN KEY (NumResa) references  Reservation(NumResa) ON DELETE CASCADE
 );
 
-
 create table Pilotes(
-NumPersoP        integer not null,
-NomP             varchar2(30) not null,
-PrenomP          varchar2(30) not null,
-Numero           integer not null,
-Rue              varchar2 (30)not null,
-Ville            varchar2(30) not null,
-CP               varchar2(30) not null,
-Pays             varchar2(30) not null,
+NumPersoP integer not null,
+NomP varchar2(30) not null,
+PrenomP varchar2(30) not null,
+Numero integer not null,
+Rue       varchar2 (30)not null,
+Ville     varchar2(30) not null,
+CP        varchar2(30) not null,
+Pays      varchar2(30) not null,
 NbHeuresVolTotal integer not null,
 constraint ck1_Pilotes CHECK (NumPersoP > 0),
 constraint ck2_Pilotes CHECK (Numero > 0),
@@ -169,7 +168,6 @@ constraint pk_Pilotes PRIMARY KEY (NumPersoP)
 
 
 create table Hotesses(
-
 NumPersoH        integer not null,
 NomH             varchar2(30) not null,
 PrenomH          varchar2(30) not null,

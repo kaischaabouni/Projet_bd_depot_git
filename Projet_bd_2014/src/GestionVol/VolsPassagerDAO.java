@@ -1,3 +1,4 @@
+
 package GestionVol;
 
 import Main.DAO;
@@ -12,13 +13,13 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
     
 	ResultSet resultat;
 	
-	//afficher la liste des vols fret
+	//afficher la liste des vols passager
 	public ResultSet ShowList() {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select NumVolP, Origine, Destination, Duree, Distance, VolumeMin, PoidsMin, NumAvionF, Termine, "
-					                                + "TO_CHAR(DateVolF, 'DD/MM/YYYY') as datevol, "
-					                                + "to_char(HeureDepGMT,'HH24:MI:SS') as heuredep  from volsfret ");
+			ResultSet resultat = requete.executeQuery("select NumVolP, Origine, Destination, Duree, Distance, Nb1ClMin, Nb2ClMin, NumAvionP, Termine, "
+					                                + "TO_CHAR(DateVolP, 'DD/MM/YYYY') as datevol, "
+					                                + "to_char(HeureDepGMT,'HH24:MI:SS') as heuredep  from VolsPassager ");
 			
 			return resultat;
 			
@@ -30,42 +31,53 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
 
 	
-	//ajouter un nouveau vol fret
+	//ajouter un nouveau vol passager
 	public void create(VolsPassager obj) throws SQLException {
 		
 	        Statement requete = cn.createStatement();
-			requete.executeQuery("insert into volsfret "
-					           + "values('"+obj.getNumVolF()+"',"
-					           + "to_date('"+obj.getDateVolF()+"', 'yyyy-mm-dd'),"
+			requete.executeQuery("insert into VolsPassager "
+					           + "values('"+obj.getNumVolP()+"',"
+					           + "to_date('"+obj.getDateVolP()+"', 'yyyy-mm-dd'),"
 					           + "'"+obj.getOrigine()+"',"
 					           + "'"+obj.getDestination()+"',"
-					           + "to_date('"+obj.getDateVolF()+"', 'yyyy-mm-dd HH24:MI:SS'),"
+					           + "to_date('"+obj.getDateVolP()+"', 'yyyy-mm-dd HH24:MI:SS'),"
 					           + "'"+obj.getDuree()+"',"
 					           + "'"+obj.getDistance()+"',"
-					           + "'"+obj.getVolumeMin()+"',"
-					           + "'"+obj.getPoidsMin()+"',"
-					           + "'"+obj.getNumAvionF()+"',"
+					           + "'"+obj.getNb1ClMin()+"',"
+					           + "'"+obj.getNb2ClMin()+"',"
+					           + "'"+obj.getNumAvionP()+"',"
 					           + "'N')");
 			
 			//parcourir la liste pour ajouter les pilotes
-			Iterator it = obj.getAffectationP().iterator();
-			while(it.hasNext()){
-				requete.executeQuery("insert into affectationp "
-			                       + "values('"+it.next()+"',"
-				                   + "'"+obj.getNumVolF()+"',"
-		                           + "to_date('"+obj.getDateVolF()+"', 'yyyy-mm-dd'))");
+			Iterator itP = obj.getAffectationP().iterator();
+			while(itP.hasNext()){
+				requete.executeQuery("insert into affectationP "
+			                       + "values('"+itP.next()+"',"
+				                   + "'"+obj.getNumVolP()+"',"
+		                           + "to_date('"+obj.getDateVolP()+"', 'yyyy-mm-dd'))");
 			
 			}
+			
+			//parcourir la liste pour ajouter les hotesses
+			Iterator itH = obj.getAffectationH().iterator();
+			while(itH.hasNext()){
+				requete.executeQuery("insert into affectationH "
+			                       + "values('"+itH.next()+"',"
+				                   + "'"+obj.getNumVolP()+"',"
+		                           + "to_date('"+obj.getDateVolP()+"', 'yyyy-mm-dd'))");
+			
+			}
+			
 			System.out.println("Vol ajouter. \n");
 			
 	}
 
 	
-	//modifier un vol fret
+	//modifier un vol passager
 	public void update(VolsPassager obj) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("update volfret ....");
+			ResultSet resultat = requete.executeQuery("update volspassager ....");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
@@ -74,12 +86,12 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
 
 	
-	//supprimer un vol fret
+	//supprimer un vol passager
 	public void delete(VolsPassager obj) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("delete from volsfret "
-					                                + "where NumVolF = "+obj.getNumVolF()+"");
+			ResultSet resultat = requete.executeQuery("delete from volspassager "
+					                                + "where NumVolP = "+obj.getNumVolP()+"");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
@@ -88,11 +100,11 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
     
 	
-	// liste des avions disponibles pour un vol fret spécifique
+	// liste des avions disponibles pour un vol passager spécifique
 	public ResultSet ListAvionsDisponible(){
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select * from avionsfret");
+			ResultSet resultat = requete.executeQuery("select * from avionspassager");
 			
 			return resultat;
 			
@@ -105,12 +117,12 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	
 	
 	// infos sur l'avion
-	public ResultSet InfosAvion(int NumAvionF){
+	public ResultSet InfosAvion(int NumAvionP){
 		try{
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select a.*, m.NbPilotes "
-					                                + "from avionsfret a, modele m "
-					                                + "where NumAvionF ="+NumAvionF+" "
+					                                + "from avionspassager a, modele m "
+					                                + "where NumAvionP ="+NumAvionP+" "
 					                                + "and m.modele = a.modele");
 			
 			return resultat;
@@ -123,7 +135,7 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
 
 	
-	//liste des pilotes disponibles pour un vol fret, et un modele d'avion spécifique
+	//liste des pilotes disponibles pour un vol passager, et un modele d'avion spécifique
 	public ResultSet ListPilotesDisponible() {
 		try{
 	        Statement requete = cn.createStatement();
@@ -141,14 +153,14 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	
 	
     // liste des pilotes affecté a un vol, utiliser lors d'affichage de liste des vols
-	public ResultSet ListPilotesAffecter(int NumVolF, String DateVolF) {
+	public ResultSet ListPilotesAffecter(int NumVolP, String DateVolP) {
 		try{
 	        Statement requete = cn.createStatement();
 			ResultSet resultat = requete.executeQuery("select p.NomP, p.PrenomP, p.NumPersoP "
 					                                + "from pilotes p, affectationp ap "
 					                                + "where p.NumPersoP = ap.NumPersoP "
-					                                + "and ap.NumVol='"+NumVolF+"' "
-					                               // + "and ap.DateVol='"+DateVolF+"' ");
+					                                + "and ap.NumVol='"+NumVolP+"' "
+					                               // + "and ap.DateVol='"+DateVolP+"' ");
 			                                        + "");
 			return resultat;
 			
@@ -160,12 +172,12 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
 
     
-	//infos d'un vol fret utiliser lors du modification d'un vol
-	public ResultSet InfosVolF(int NumVolF) {
+	//infos d'un vol passager utiliser lors du modification d'un vol
+	public ResultSet InfosVolP(int NumVolP) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("select * from VolsFret "
-					                                + "where NumVolF ='"+NumVolF+"' "
+			ResultSet resultat = requete.executeQuery("select * from VolsPassager "
+					                                + "where NumVolP ='"+NumVolP+"' "
 					                                + "");
 			return resultat;
 			
@@ -177,20 +189,20 @@ public class VolsPassagerDAO extends DAO<VolsPassager>{
 	}
 
 
-	//infos des pilotes affecter à un vol fret utiliser lors du modification d'un vol
-	public ResultSet InfoPilotesAffecter(String numVolF, Date dateVolF) {
+	//infos des pilotes affecter à un vol passager utiliser lors du modification d'un vol
+	public ResultSet InfoPilotesAffecter(String numVolP, Date dateVolP) {
 		
 		return null;
 	}
 
 
-	//validation d'un vol fret
-	public void ValiderVolF(int NumVolF) {
+	//validation d'un vol passager
+	public void ValiderVolP(int NumVolP) {
 		try{
 	        Statement requete = cn.createStatement();
-			ResultSet resultat = requete.executeQuery("update volsfret "
+			ResultSet resultat = requete.executeQuery("update volspassager "
 					                                + "set Termine='O' "
-					                                + "where NumVolF = "+NumVolF+" ");
+					                                + "where NumVolP = "+NumVolP+" ");
 			
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
