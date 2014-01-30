@@ -1,3 +1,4 @@
+
 package GestionClient;
 
 import java.sql.ResultSet;
@@ -56,7 +57,7 @@ public class ClientDAO extends DAO<ClientDAO>{
 				+ "where c.NumClient = "+ NumClient +" "
 				+ "and c.NumClient = r.NumClient "
 				+ "and r.NumResa = rf.NumResa "
-				+ "and rf.NumVol = v.NumVolF");
+				+ "and rf.NumVolF = v.NumVolF");
 		
 		return resultat;
 		

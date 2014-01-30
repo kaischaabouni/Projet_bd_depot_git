@@ -143,15 +143,15 @@ public class ReservationPassagerMain {
 		resa.setDateResa(dateVolP);
 		
 		ReservationDAO.create(resa);
-
-
-
+		
 		try {
 			reservationPassager.create(resap);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("Réservation achevée. \n");
+
 		
 	    //fin
 		System.out.println("****************************************************\n");
