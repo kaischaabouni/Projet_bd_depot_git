@@ -49,6 +49,8 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 	}
 	
 	public void create(ReservationPassager obj) throws SQLException {
+
+        cn.setAutoCommit(true);
 		try{
 			Statement requete = cn.createStatement();
 			requete.executeQuery("insert into ResaPassager "
@@ -57,6 +59,7 @@ public class ReservationPassagerDAO extends DAO<ReservationPassagerDAO>{
 				           + ""+obj.getNumPlace()+","
 				           + ""+obj.getNumResa()+","
 				           + ""+obj.getPrix()+")");
+
 		}catch(SQLException e){	
 			System.out.println("ERROR ! \n Code d'erreur"+e.getErrorCode());
 			System.out.println("Message d'erreur : "+e.getMessage());

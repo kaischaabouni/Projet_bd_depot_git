@@ -29,7 +29,10 @@ public class ReservationDAO extends DAO<ReservationDAO>{
 
 	
 	public static void create(Reservation obj) {
+
 		try{
+	        cn.setAutoCommit(true);
+
 	        Statement requete = cn.createStatement();	
 			
 			requete.executeQuery("insert into reservation "
