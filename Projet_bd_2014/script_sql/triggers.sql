@@ -320,7 +320,6 @@ BEGIN
 END;
 /
 
-
 CREATE OR REPLACE TRIGGER PilotesAffecte2Vols
 AFTER INSERT OR UPDATE ON AffectationP
 DECLARE
@@ -331,25 +330,25 @@ BEGIN
 		select count(*) into nb from (select a.NumVol , b.NumVol from  AffectationP	a, AffectationP b , VolsPassager c , VolsPassager d 
 			where ( a.NumVol <> b.NumVol    and a.NumPersoP  = b.NumPersoP 
 				and a.NumVol = c.NumVolP and a.DateVol = c.DateVolP and b.NumVol = d.NumVolP and b.DateVol = d.DateVolP
-				and a.DateVol = b.DateVol   and  d.HeureDepGMT < (c.HeureDepGMT + (c.Duree/(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT	
+				and a.DateVol = b.DateVol   and  d.HeureDepGMT < (c.HeureDepGMT + ((c.Duree + 120)/(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT	
 			)
 		);
 		select count(*) into nb2 from (select a.NumVol , b.NumVol from  AffectationP	a, AffectationP b , VolsFret c , VolsFret d 
 			where ( a.NumVol <> b.NumVol    and a.NumPersoP  = b.NumPersoP 
 				and a.NumVol = c.NumVolF and a.DateVol = c.DateVolF and b.NumVol = d.NumVolF and b.DateVol = d.DateVolF
-				and a.DateVol = b.DateVol   and  d.HeureDepGMT < (c.HeureDepGMT + (c.Duree/(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT	
+				and a.DateVol = b.DateVol   and  d.HeureDepGMT < (c.HeureDepGMT + ((c.Duree + 120) /(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT	
 			)
 		);
 		select count(*) into nb3 from (select a.NumVol , b.NumVol from  AffectationP	a, AffectationP b , VolsPassager c , VolsFret d 
 			where ( a.NumVol <> b.NumVol    and a.NumPersoP  = b.NumPersoP 
 				and a.NumVol = c.NumVolP and a.DateVol = c.DateVolP and b.NumVol = d.NumVolF and b.DateVol = d.DateVolF
 				and a.DateVol = b.DateVol   
-				and  ((d.HeureDepGMT < (c.HeureDepGMT + (c.Duree/(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT) 
-					or (c.HeureDepGMT < (d.HeureDepGMT + (d.Duree/(24.0*60.0))) and d.HeureDepGMT <= c.HeureDepGMT)
+				and  ((d.HeureDepGMT < (c.HeureDepGMT + ((c.Duree + 120)/(24.0*60.0))) and c.HeureDepGMT <= d.HeureDepGMT) 
+					or (c.HeureDepGMT < (d.HeureDepGMT + ((d.Duree + 120)/(24.0*60.0))) and d.HeureDepGMT <= c.HeureDepGMT)
 				)	
 			)
 		);			
-        if (nb > 0 or nb2 > 0 or nb3 > 0) then raise_application_error (-20999,'Ce Pilote est affecte en ce moment à un autre vol');
+        if (nb > 0 or nb2 > 0 or nb3 > 0) then raise_application_error (-20999,'Ce Pilote est affecte en ce moment à un autre vol ou bien il fait sa pause');
         end if;
 END;
 /
